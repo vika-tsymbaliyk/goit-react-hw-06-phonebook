@@ -1,9 +1,13 @@
+import { deleteContactsAction } from "redux/contactsSlise";
 import { ContactWrap, ButtonDel } from "./Contact.styled";
-import PropTypes from 'prop-types';
+import { useDispatch} from "react-redux";
 
 export const Contact = ({contact })=>{
-    const deleteContact = (contactId) => {
-        // setContacts(prevContacts =>prevContacts.filter(contact => contact.id !== contactId));
+
+  const dispatch = useDispatch();
+  
+    const deleteContact = (contactId, action) => {
+        dispatch(deleteContactsAction(contactId, action))
       };
     const {id, name, number} = contact;
     return(
@@ -12,13 +16,4 @@ export const Contact = ({contact })=>{
         <ButtonDel onClick={()=> deleteContact(id)}>Delete</ButtonDel>
     </ContactWrap>
     )
-}
-
-Contact.propTypes = {
-    contact: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired
-    }),
-     onDelete: PropTypes.func,
 }
