@@ -2,10 +2,9 @@ import { Formik } from "formik";
 import * as Yup from 'yup';
 import { Label, ErrorMsg, Input, PhonebookForm} from "./ContactForm.styled";
 import { useDispatch } from "react-redux";
-import { addContactAction } from "../../redux/actions";
-// import { nanoid } from 'nanoid'
 import { useSelector } from "react-redux";
 import { getContacts} from "redux/selectors";
+
 
 
 const SignupSchema = Yup.object().shape({
@@ -46,7 +45,6 @@ export const ContactForm = ()=>{
   
     // setContacts(prevContacts =>[...prevContacts, {id: nanoid(), ...newContact}]);
 
-    dispatch(addContactAction( name, number));
     }
 
 
