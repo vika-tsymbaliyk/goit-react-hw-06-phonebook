@@ -8,7 +8,7 @@ const contactsSlice = createSlice({
     name: "contacts",
     initialState: contactsInitialState,
     reducers: {
-      addContacts: {
+      addContactsAction: {
         reducer(state, action) {
           state.push(action.payload);
         },
@@ -38,5 +38,5 @@ const contactsSlice = createSlice({
     },
   });
   
-  export const { addContacts, deleteContacts} = contactsSlice.actions;
+  export const { addContactsAction, deleteContacts} = contactsSlice.actions;
   export const contactsReducer = contactsSlice.reducer;

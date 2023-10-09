@@ -4,6 +4,7 @@ import { Label, ErrorMsg, Input, PhonebookForm} from "./ContactForm.styled";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getContacts} from "redux/selectors";
+import { addContactsAction } from "redux/contactsSlise";
 
 
 
@@ -28,23 +29,21 @@ export const ContactForm = ()=>{
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
 
-  const addContact = newContact =>{
+  const addContact = (newContact, action) =>{
     const { name, number } = newContact;
-  console.log(name, number);
-    // if (!contacts) {
-    //   console.error('Contacts are undefined');
-    //   return;
-    // }const isExist = contacts.some(
-    //   contact => contact.name.toUpperCase() === name.toUpperCase()
-    //     || contact.number === number
-    // );
-    // if (isExist) {
-    //   alert(`${name} is already in contacts.`);
-    //   return
-    // }
-  
-    // setContacts(prevContacts =>[...prevContacts, {id: nanoid(), ...newContact}]);
 
+   const isExist = contacts.some(
+      contact => contact.name.toUpperCase() === name.toUpperCase()
+        || contact.number === number
+    );
+    if (isExist) {
+      alert(`${name} is already in contacts.`);
+      return
+    }
+    action.resetForm();
+    
+      dispatch(addContactsAction(name, number));
+      console.log(contacts);
     }
 
 
@@ -57,10 +56,7 @@ return(
       }}
       
     validationSchema={SignupSchema}
-    onSubmit={(values, actions) =>{
-      addContact(values);
-        actions.resetForm();
-    }}
+    onSubmit={addContact}
     >
 
   <PhonebookForm>
