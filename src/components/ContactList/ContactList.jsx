@@ -7,7 +7,6 @@ export const ContactList =( )=>{
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
   const filterContacts = contacts.filter(contact => contact.name.toUpperCase().includes(filter.toUpperCase()));
-  console.log(contacts);
 
     return(
         <ContactListWrap>
