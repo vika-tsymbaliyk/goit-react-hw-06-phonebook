@@ -43,7 +43,6 @@ export const ContactForm = ()=>{
     action.resetForm();
     
       dispatch(addContactsAction(name, number));
-      console.log(contacts);
     }
 
 
